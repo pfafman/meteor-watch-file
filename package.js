@@ -1,6 +1,6 @@
 Package.describe({
   summary: "A reactive file watching package.",
-  version: "0.1.4",
+  version: "0.1.5",
   git: "https://github.com/pfafman/meteor-watch-file.git"
 });
 
