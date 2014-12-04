@@ -1,20 +1,31 @@
 
 <template name="fileWatcher">
   
-  <form class="form-inline" role="form">
-    <label for="file-selector" class="control-label">Select File to watch</label>
-    <select id="file-selector" class="form-control">
-      {{#each files}}
-        <option value={{value}}>{{label}}</option>
-      {{/each}}
-    </select>
+  <form class="form-inline file-watcher-form" role="form">
+    <div class="form-group file-watcher-form-group">
+      <select id="file-selector" class="form-control input-sm">
+        {{#each files}}
+          <option value={{value}}>{{label}}</option>
+        {{/each}}
+      </select>
+    </div>
 
-
-    <div class="checkbox pull-right">
+    <div class="checkbox file-watcher-form-group">
       <label>
-        <input id="scroll-to-bottom" type="checkbox" checked> Scroll to bottom on change
+        <input id="scroll-to-bottom" type="checkbox" checked> Auto scroll
       </label>
     </div>
+
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <i class="fa fa-search"></i>
+        </span>
+        <input type="text" class="form-control input-sm" id="search-string" placeholder="Search">
+      </div>
+    </div>
+    
+
   </form>
 
   {{#if file}}

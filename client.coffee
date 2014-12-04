@@ -4,6 +4,7 @@ WatchFiles = new Mongo.Collection('watchFiles')
 Template.fileWatcher.created = ->
   @filenames = new ReactiveVar([])
   @file = new ReactiveVar()
+  @searchString = new ReactiveVar()
   console.log("fileWatcher created data", @data)
   Meteor.call "listFilesInDir", @data.path, (err, filenames) =>
     if err
@@ -43,13 +44,34 @@ Template.fileWatcher.helpers
           pre.animate({ scrollTop: pre.prop("scrollHeight") }, "slow")
         , 10
 
-      WatchFiles.findOne
+      contents = WatchFiles.findOne
         _id: Template.instance().file.get()
       ?.fileContent
+
+      searchString = Template.instance().searchString.get()
+      if searchString? and searchString isnt ""
+        re = new RegExp(searchString,"i")
+        lines = contents.split("\n")
+        searchedLines = []
+        for line in lines
+          searchedLines.push(line) if line.search(re) isnt -1
+        searchedLines.join("\n")
+      else
+        contents
+
     
 
 Template.fileWatcher.events
+
   'change #file-selector': (e, tmpl) ->
     console.log('file changed', $(e.target).val())
     tmpl.file.set($(e.target).val())
+
+
+  'keyup #search-string': (e, tmpl) ->
+    console.log("search", $(e.target).val())
+    tmpl.searchString.set($(e.target).val())
+
+
+
     
