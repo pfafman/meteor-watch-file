@@ -1,16 +1,25 @@
-watch smart package
-============================
+Watch-File
+==========
 
-Meteor smart package for [watch](https://github.com/mikeal/watch) 
+Meteor smart package to watch a file and display contents.  Use to watch log files reactively.
 
-Adding this package to your [Meteor](http://www.meteor.com/) application adds 
-`watch` object into the global scope.
-
-Server side only.
 
 Installation
 ------------
 
 ```
-meteor add pfafman:watch
+meteor add pfafman:watch-file
 ```
+
+Use
+---
+
+Pull in the template and pass the directory you want to select a file from
+```
+   {{> fileWatcher path="/path/to/what/I/want/to/watch"}} 
+```
+
+Notes
+-----
+
+Only works on systems that use '/'.  TODO: Fix this to work on any system.
