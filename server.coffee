@@ -1,4 +1,6 @@
 
+DEBUG = false
+
 fs = Npm.require('fs')
 
 
@@ -8,7 +10,7 @@ Meteor.methods
 
 
 Meteor.publish "watchFile", (path, filename) ->
-  console.log("watchFile sub", path, filename)
+  console.log("watchFile sub", path, filename) if DEBUG
   sub = @
   
   fullpath = path + '/' + filename
@@ -18,7 +20,7 @@ Meteor.publish "watchFile", (path, filename) ->
     fileContent: fileContent
 
   watcher = fs.watch fullpath, (event, file) ->
-    console.log(event, file, fullpath)
+    console.log(event, file, fullpath) if DEBUG
     fileContent = fs.readFileSync fullpath,
       encoding: 'utf8'
     sub.changed 'watchFiles', filename,
