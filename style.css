@@ -1,0 +1,8 @@
+
+.file-well {
+}
+
+.file-pre {
+  overflow-y: auto;
+  max-height: 500px;
+}

@@ -1,0 +1,20 @@
+
+<template name="fileWatcher">
+  
+  <form class="form-inline" role="form">
+    <label for="file-selector" class="control-label">Select File to watch</label>
+    <select id="file-selector" class="form-control">
+      {{#each files}}
+        <option value={{value}}>{{label}}</option>
+      {{/each}}
+    </select>
+  </form>
+
+  {{#if file}}
+    <br/>
+    <div class="well well-sm file-well">
+      <pre class="file-pre">{{fileContents}}</pre>
+    </div>
+  {{/if}}
+
+</template>
