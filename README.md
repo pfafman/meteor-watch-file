@@ -3,6 +3,10 @@ Watch-File
 
 Meteor smart package to watch a file and display contents.  Use to watch log files reactively.
 
+WARNING
+-------
+This is a work in progress (WIP).  I have seen a few stability issues.
+
 
 Installation
 ------------

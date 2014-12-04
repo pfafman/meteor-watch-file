@@ -13,4 +13,9 @@
 .file-pre {
   overflow: auto;
   max-height: 500px;
+  border: none;
+}
+
+.file-loading {
+  text-align: center;
 }

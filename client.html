@@ -31,7 +31,13 @@
   {{#if file}}
     <br/>
     <div class="well well-sm file-well">
-      <pre class="file-pre">{{fileContents}}</pre>
+      {{#if loading}}
+        <div class="file-loading">
+          <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </div>
+      {{else}}
+        <pre class="file-pre">{{fileContents}}</pre>
+      {{/if}}
     </div>
   {{/if}}
 

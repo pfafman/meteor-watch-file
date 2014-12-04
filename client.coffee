@@ -6,6 +6,7 @@ WatchFiles = new Mongo.Collection('watchFiles')
 Template.fileWatcher.created = ->
   @filenames = new ReactiveVar([])
   @file = new ReactiveVar()
+  @loading = new ReactiveVar(true)
   @searchString = new ReactiveVar()
   console.log("fileWatcher created data", @data) if DEBUG
   Meteor.call "listFilesInDir", @data.path, (err, filenames) =>
@@ -16,7 +17,10 @@ Template.fileWatcher.created = ->
   
   @autorun =>
     if @file.get()?
-      Meteor.subscribe("watchFile", @data.path, @file.get())
+      Template.instance().loading.set(true)
+      @sub = Meteor.subscribe("watchFile", @data.path, @file.get())
+    if @sub?.ready()
+      Template.instance().loading.set(false)
 
 
 Template.fileWatcher.helpers
@@ -35,6 +39,10 @@ Template.fileWatcher.helpers
 
   file: ->
     Template.instance().file.get()
+
+
+  loading: ->
+    Template.instance().loading.get()
 
 
   fileContents: ->
@@ -67,6 +75,7 @@ Template.fileWatcher.events
 
   'change #file-selector': (e, tmpl) ->
     console.log('file changed', $(e.target).val()) if DEBUG
+    tmpl.loading.set(true)
     tmpl.file.set($(e.target).val())
 
 
