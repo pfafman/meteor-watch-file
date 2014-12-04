@@ -34,6 +34,6 @@ Package.on_use(function (api) {
 });
 
 Package.on_test(function (api) {
-  api.use(['pfafman:watch', 'tinytest', 'test-helpers'], 'server');
+  api.use(['pfafman:watch-file', 'tinytest', 'test-helpers'], 'server');
   api.add_files('tests.js', 'server');
 });
