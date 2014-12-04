@@ -11,6 +11,7 @@ Package.on_use(function (api) {
   api.use([
     'underscore',
     'coffeescript',
+    'pfafman:font-awesome-4@4.2.0',
   ], ['client', 'server']);
 
   api.use([
