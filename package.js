@@ -1,6 +1,6 @@
 Package.describe({
-  summary: "Add Watch to meteor",
-  version: "0.1.0",
+  summary: "A reactive file watching package.",
+  version: "0.1.1",
   git: "https://github.com/pfafman/meteor-watch-file.git"
 });
 
