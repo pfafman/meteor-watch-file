@@ -36,11 +36,12 @@ Template.fileWatcher.helpers
 
   fileContents: ->
     if Template.instance().file?.get()?
-      Meteor.setTimeout ->
-        pre = $('.file-pre')
-        console.log("scroll", pre)
-        pre.animate({ scrollTop: pre.prop("scrollHeight") }, "slow")
-      , 10
+      if $('#scroll-to-bottom').is(':checked')
+        Meteor.setTimeout ->
+          pre = $('.file-pre')
+          console.log("scroll", pre)
+          pre.animate({ scrollTop: pre.prop("scrollHeight") }, "slow")
+        , 10
 
       WatchFiles.findOne
         _id: Template.instance().file.get()
